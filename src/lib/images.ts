@@ -4,7 +4,7 @@
  * NOTE: `public/assets/Team/Pranay Wankhede.HEIC` is intentionally unused —
  * browsers cannot render HEIC. Convert it to JPG/PNG to enable.
  */
-const a = (p: string) => encodeURI(`/assets/${p}`);
+const a = (p: string) => `/assets/${p}`;
 
 export const XR_IMAGES = {
   vrHero: a("Capabilities/Gaming/man-wearing-vr-glasses-gaming.jpg"),
@@ -44,9 +44,10 @@ export const XR_IMAGES = {
   solInjection: a("Solutions/Injection Simulator.png"),
   heroLogistics: a("Hero/logistics-means-transport-together-with-technological-futuristic-holograms_23-2151662938.jpg"),
   heroFreepik: a("Hero/freepik_edit_A-Hispanic-male-using-software-on-a-computer-at-ni.jpeg"),
+  heroMain: a("Hero/Hero Main.png"),
 };
 
-export const HERO_SLIDES = [XR_IMAGES.heroLogistics, XR_IMAGES.vrMan, XR_IMAGES.neonGame];
+export const HERO_SLIDES = [XR_IMAGES.heroMain, XR_IMAGES.vrMan, XR_IMAGES.neonGame];
 
 /** Per-capability galleries (4 local photos each). */
 export const CAP_GALLERIES: Record<string, string[]> = {
