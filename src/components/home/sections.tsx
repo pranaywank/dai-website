@@ -12,7 +12,7 @@ import { XR_IMAGES as X, HERO_SLIDES } from "@/lib/images";
 const XR = {
   hero1: HERO_SLIDES[0],
   hero2: X.heroDangerous,
-  hero3: X.neonGame,
+  hero3: X.heroTwin,
   lab: X.arLab,
   industrial: X.engineerTwin,
   training: X.training,

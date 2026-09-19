@@ -47,6 +47,7 @@ export const XR_IMAGES = {
   heroMain: a("Hero/Hero Main.png"),
   heroFirst: a("Hero/first main.png"),
   heroDangerous: a("Hero/dangerous.png"),
+  heroTwin: a("Hero/digital-twin.png"),
 };
 
 export const HERO_SLIDES = [XR_IMAGES.heroFirst, XR_IMAGES.vrMan, XR_IMAGES.neonGame];
