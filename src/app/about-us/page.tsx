@@ -80,7 +80,7 @@ export default function Page() {
 
       {/* Mission */}
       <section className="py-14 md:py-20 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid lg:grid-cols-2 gap-8 items-center">
+        <div className="wrap grid lg:grid-cols-2 gap-8 items-center">
           <div className="relative overflow-hidden rounded-[28px] aspect-[4/3] shadow-xl shadow-[#1F2A2E]/10">
             <Image src={X.arLab} alt="Engineers building XR solutions in the studio lab" fill className="object-cover" sizes="(max-width:1024px) 100vw, 50vw" />
           </div>
@@ -106,7 +106,7 @@ export default function Page() {
 
       {/* Partnerships */}
       <section className="py-14 md:py-20 bg-[#1F2A2E]">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-white/50">Partners</p>
           <h2 className="mt-3 text-3xl md:text-5xl font-extrabold tracking-tight text-white max-w-2xl">Partnerships that Drive Innovation and Success</h2>
           <p className="mt-4 text-lg text-white/70 max-w-2xl">Progress is built through strong, strategic partnerships — aligning with the best to deliver unmatched value and support.</p>
@@ -124,7 +124,7 @@ export default function Page() {
 
       {/* Stats */}
       <section className="py-14 md:py-20 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight max-w-2xl">Empowering Growth with Innovative XR Solutions</h2>
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6">
             {[["10+", "Years in Business"], ["300+", "Projects Completed"], ["120+", "Happy Clients"], ["100%", "Dedicated Success"]].map(([v, l]) => (
@@ -141,7 +141,7 @@ export default function Page() {
 
       {/* Leadership */}
       <section className="py-14 md:py-20 bg-white" id="leadership">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-[#626a6d]">Leadership</p>
           <h2 className="mt-3 text-3xl md:text-5xl font-extrabold tracking-tight">Our Leadership</h2>
           <div className="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
@@ -152,7 +152,7 @@ export default function Page() {
 
       {/* Team */}
       <section className="py-14 md:py-20 bg-[#F4F8FA]">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-[#626a6d]">Studio</p>
           <h2 className="mt-3 text-3xl md:text-5xl font-extrabold tracking-tight">Our Team</h2>
           <p className="mt-4 text-lg text-[#626a6d] max-w-2xl">Engineers, artists, instructional designers and program managers behind every XR rollout.</p>
@@ -164,7 +164,7 @@ export default function Page() {
 
       {/* Contact */}
       <section className="py-14 md:py-20 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid lg:grid-cols-[1fr_1.4fr] gap-8 items-start">
+        <div className="wrap grid lg:grid-cols-[1fr_1.4fr] gap-8 items-start">
           <div>
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">Get In Touch</h2>
             <p className="mt-4 text-lg text-[#626a6d]">Tell us where XR could move the needle — we reply with a scoped next step.</p>

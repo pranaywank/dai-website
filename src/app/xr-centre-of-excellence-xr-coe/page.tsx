@@ -23,7 +23,7 @@ export default function Page() {
         imageAlt="XR Centre of Excellence lab with immersive equipment"
       />
       <section className="py-14 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {XR_COE_GALLERY.map((g, i) => (
               <div key={g} className={`relative overflow-hidden rounded-[20px] h-52 md:h-64 group ${i === 0 ? "col-span-2 md:row-span-1" : ""}`}>

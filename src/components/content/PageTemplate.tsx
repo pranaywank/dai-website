@@ -10,7 +10,7 @@ export function PageHero({ eyebrow, title, tagline, description, image, imageAlt
     <section className="relative overflow-hidden bg-[#1F2A2E] pt-32 pb-14 md:pt-40">
       {image && <Image src={image} alt={imageAlt ?? title} fill priority className="object-cover opacity-30" sizes="100vw" />}
       <div className="absolute inset-0 bg-gradient-to-t from-[#1F2A2E] via-[#1F2A2E]/70 to-[#1F2A2E]/40" />
-      <div className="relative mx-auto max-w-[1320px] px-4 md:px-6">
+      <div className="relative wrap">
         {crumbs && (
           <nav aria-label="Breadcrumb" className="mb-5 flex items-center gap-1.5 text-xs font-bold text-white/60">
             <Link href="/" className="hover:text-white">Home</Link>
@@ -112,7 +112,7 @@ export function ContentDetail({ page, relatedLabel, related, crumbBase }: { page
       {/* stat band */}
       {page.stats && (
         <div className="border-b border-[#1F2A2E]/10 bg-white">
-          <div className="mx-auto max-w-[1320px] px-4 md:px-6 py-6 grid grid-cols-3 gap-3">
+          <div className="wrap py-6 grid grid-cols-3 gap-3">
             {page.stats.map((s) => (
               <div key={s.label} className="text-center">
                 <p className="text-2xl md:text-4xl font-extrabold grad-text">{s.value}</p>
@@ -123,7 +123,7 @@ export function ContentDetail({ page, relatedLabel, related, crumbBase }: { page
         </div>
       )}
       <section className="py-14 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <div className="grid lg:grid-cols-[1.5fr_1fr] gap-6 items-start">
             <div className="space-y-6 min-w-0">
               <div className="relative overflow-hidden rounded-[24px] aspect-[16/8]">

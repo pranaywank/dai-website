@@ -22,7 +22,7 @@ export default function Page() {
         imageAlt="Pankh UAV simulator for drone pilot training"
       />
       <section className="py-14 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid lg:grid-cols-2 gap-8 items-center">
+        <div className="wrap grid lg:grid-cols-2 gap-8 items-center">
           <div className="relative overflow-hidden rounded-[28px] aspect-[4/3] shadow-xl shadow-[#1F2A2E]/10">
             <Image src={X.rocket} alt="UAV training scenario in Pankh simulator" fill className="object-cover" sizes="(max-width:1024px) 100vw, 50vw" />
           </div>

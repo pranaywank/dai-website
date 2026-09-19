@@ -117,7 +117,7 @@ export function IndustryDetail({ page }: { page: ContentPage }) {
 
       {page.stats && (
         <div className="border-b border-[#1F2A2E]/10 bg-white">
-          <div className="mx-auto max-w-[1320px] px-4 md:px-6 py-8 grid grid-cols-3 gap-3">
+          <div className="wrap py-8 grid grid-cols-3 gap-3">
             {page.stats.map((s) => (
               <div key={s.label} className="text-center">
                 <p className="text-2xl md:text-5xl font-extrabold grad-text">{s.value}</p>
@@ -130,7 +130,7 @@ export function IndustryDetail({ page }: { page: ContentPage }) {
 
       {/* Solutions we provide */}
       <section className="py-14 md:py-20 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#626a6d]">Capabilities in {page.title}</p>
           <h2 className="mt-2 text-3xl md:text-5xl font-extrabold tracking-tight">Solutions We Provide</h2>
           <p className="mt-4 text-lg text-[#626a6d] max-w-2xl">What our XR studio delivers for {page.title.toLowerCase()} teams — across training, operations and planning.</p>
@@ -141,7 +141,7 @@ export function IndustryDetail({ page }: { page: ContentPage }) {
 
       {/* Why Us */}
       <section className="py-14 md:py-20 bg-[#F4F8FA]">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#626a6d]">Why Us</p>
           <h2 className="mt-2 text-3xl md:text-5xl font-extrabold tracking-tight">Why teams choose us</h2>
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -160,7 +160,7 @@ export function IndustryDetail({ page }: { page: ContentPage }) {
 
       {/* Case studies */}
       <section className="py-14 md:py-20 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <div className="flex items-end justify-between gap-4">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#626a6d]">Proof</p>
@@ -187,7 +187,7 @@ export function IndustryDetail({ page }: { page: ContentPage }) {
 
       {/* FAQ */}
       <section className="py-14 md:py-20 bg-[#F4F8FA]">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid lg:grid-cols-[1fr_1.5fr] gap-8">
+        <div className="wrap grid lg:grid-cols-[1fr_1.5fr] gap-8">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#626a6d]">FAQ</p>
             <h2 className="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight">{page.title} questions</h2>
@@ -207,7 +207,7 @@ export function IndustryDetail({ page }: { page: ContentPage }) {
 
       {/* Explore industries */}
       <section className="py-14 md:py-20 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#626a6d]">Keep exploring</p>
           <h2 className="mt-2 text-3xl md:text-5xl font-extrabold tracking-tight">Explore Industries</h2>
           <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -224,7 +224,7 @@ export function IndustryDetail({ page }: { page: ContentPage }) {
 
       {/* CTA */}
       <section className="pb-14 md:pb-20 px-4 md:px-6 bg-white">
-        <div className="mx-auto max-w-[1320px] rounded-[24px] overflow-hidden relative bg-[#1F2A2E]">
+        <div className="wrap rounded-[24px] overflow-hidden relative bg-[#1F2A2E]">
           <Image src={page.image} alt="" fill className="object-cover opacity-25" sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#a13ddf]/60 to-[#2BB2FC]/40" />
           <div className="relative p-8 md:p-12 flex flex-col md:flex-row md:items-center gap-6 justify-between">

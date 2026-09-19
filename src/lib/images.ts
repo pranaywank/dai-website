@@ -45,9 +45,10 @@ export const XR_IMAGES = {
   heroLogistics: a("Hero/logistics-means-transport-together-with-technological-futuristic-holograms_23-2151662938.jpg"),
   heroFreepik: a("Hero/freepik_edit_A-Hispanic-male-using-software-on-a-computer-at-ni.jpeg"),
   heroMain: a("Hero/Hero Main.png"),
+  heroFirst: a("Hero/first main.png"),
 };
 
-export const HERO_SLIDES = [XR_IMAGES.heroMain, XR_IMAGES.vrMan, XR_IMAGES.neonGame];
+export const HERO_SLIDES = [XR_IMAGES.heroFirst, XR_IMAGES.vrMan, XR_IMAGES.neonGame];
 
 /** Per-capability galleries (4 local photos each). */
 export const CAP_GALLERIES: Record<string, string[]> = {

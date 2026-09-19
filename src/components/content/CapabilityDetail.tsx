@@ -49,7 +49,7 @@ export function CapabilityDetail({ page }: { page: Omit<ContentPage, "icon"> }) 
 
       {page.stats && (
         <div className="border-b border-[#1F2A2E]/10 bg-white">
-          <div className="mx-auto max-w-[1320px] px-4 md:px-6 py-8 grid grid-cols-3 gap-3">
+          <div className="wrap py-8 grid grid-cols-3 gap-3">
             {page.stats.map((s) => (
               <div key={s.label} className="text-center">
                 <p className="text-2xl md:text-5xl font-extrabold grad-text">{s.value}</p>
@@ -62,7 +62,7 @@ export function CapabilityDetail({ page }: { page: Omit<ContentPage, "icon"> }) 
 
       {/* gallery strip */}
       <section className="py-10 bg-white overflow-hidden">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid grid-cols-3 gap-4">
+        <div className="wrap grid grid-cols-3 gap-4">
           {gallery.map((g, i) => (
             <div key={g + i} className="relative overflow-hidden rounded-[24px] h-48 md:h-80 group">
               <Image src={g} alt={`${page.title} work sample ${i + 1}`} fill className="object-cover group-hover:scale-105 transition duration-700" sizes="(max-width:768px) 33vw, 25vw" />
@@ -74,7 +74,7 @@ export function CapabilityDetail({ page }: { page: Omit<ContentPage, "icon"> }) 
 
       {/* overview */}
       <section className="pb-14 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid lg:grid-cols-2 gap-8 items-start">
+        <div className="wrap grid lg:grid-cols-2 gap-8 items-start">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#626a6d]">{page.title} at Digital Agents</p>
             {page.overview.map((p) => (
@@ -90,7 +90,7 @@ export function CapabilityDetail({ page }: { page: Omit<ContentPage, "icon"> }) 
 
       {/* Our Services */}
       <section className="py-14 md:py-20 bg-[#F4F8FA]">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-[#626a6d]">{page.title}</p>
           <h2 className="mt-3 text-3xl md:text-5xl font-extrabold tracking-tight">Our Services</h2>
           <div className="mt-10 grid md:grid-cols-3 gap-5 items-stretch">
@@ -115,7 +115,7 @@ export function CapabilityDetail({ page }: { page: Omit<ContentPage, "icon"> }) 
 
       {/* Industries we serve */}
       <section className="py-14 md:py-20 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#626a6d]">Reach</p>
           <h2 className="mt-2 text-3xl md:text-5xl font-extrabold tracking-tight">Industries We Serve</h2>
           <p className="mt-4 text-lg text-[#626a6d] max-w-2xl">This capability ships across our industry programs — from manufacturing and defence to retail and education.</p>
@@ -133,7 +133,7 @@ export function CapabilityDetail({ page }: { page: Omit<ContentPage, "icon"> }) 
 
       {/* Case studies */}
       <section className="py-14 md:py-20 bg-[#F4F8FA]">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <div className="flex items-end justify-between gap-4">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">Case Studies</h2>
             <Link href="/case-studies" className="hidden sm:inline-flex items-center gap-3 rounded-full bg-[#1F2A2E] text-white pl-6 pr-1.5 py-1.5 text-sm font-bold min-h-[52px] shrink-0">View all<span className="w-10 h-10 rounded-full bg-gradient-to-r from-[#a13ddf] to-[#2BB2FC] grid place-items-center"><ArrowUpRight className="h-4 w-4" /></span></Link>
@@ -157,7 +157,7 @@ export function CapabilityDetail({ page }: { page: Omit<ContentPage, "icon"> }) 
 
       {/* FAQ */}
       <section className="py-14 md:py-20 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid lg:grid-cols-[1fr_1.5fr] gap-8">
+        <div className="wrap grid lg:grid-cols-[1fr_1.5fr] gap-8">
           <div>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">{page.title} FAQs</h2>
             <p className="mt-3 text-[#626a6d]">Common questions before starting a {page.title.toLowerCase()} engagement.</p>
@@ -175,7 +175,7 @@ export function CapabilityDetail({ page }: { page: Omit<ContentPage, "icon"> }) 
 
       {/* Get in touch form */}
       <section className="pb-14 md:pb-20 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid lg:grid-cols-[1fr_1.4fr] gap-8 items-start">
+        <div className="wrap grid lg:grid-cols-[1fr_1.4fr] gap-8 items-start">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#626a6d]">Contact</p>
             <h2 className="mt-2 text-3xl md:text-5xl font-extrabold tracking-tight">Get In Touch</h2>
@@ -187,7 +187,7 @@ export function CapabilityDetail({ page }: { page: Omit<ContentPage, "icon"> }) 
 
       {/* CTA */}
       <section className="pb-14 md:pb-20 px-4 md:px-6 bg-white">
-        <div className="mx-auto max-w-[1320px] rounded-[24px] overflow-hidden relative bg-[#1F2A2E]">
+        <div className="wrap rounded-[24px] overflow-hidden relative bg-[#1F2A2E]">
           <Image src={page.image} alt="" fill className="object-cover opacity-25" sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#a13ddf]/60 to-[#2BB2FC]/40" />
           <div className="relative p-8 md:p-12">

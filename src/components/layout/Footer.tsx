@@ -49,7 +49,7 @@ const socialLinks = [
 export function Footer() {
   return (
     <footer className="bg-[#1F2A2E] relative overflow-hidden text-gray-400">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-14 z-40 relative">
+      <div className="wrap pt-14 z-40 relative">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 md:gap-8 pb-12">
             {/* Brand section */}
             <div className="flex flex-col space-y-4 lg:col-span-1">
@@ -121,7 +121,7 @@ export function Footer() {
 
         {/* Footer bottom */}
         <div className="border-t border-gray-700/60 relative z-10 bg-[#1F2A2E]">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0">
+          <div className="wrap py-6 flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0">
             <div className="flex space-x-6 text-gray-400">
               {socialLinks.map(({ Icon, label, href }) => (
                 <Link key={label} href={href} aria-label={label} className="hover:text-[#2BB2FC] transition-colors">

@@ -31,7 +31,7 @@ export function Navbar() {
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       <div className="border-t-4 border-[#a13ddf] bg-white/90 backdrop-blur-xl border-b border-[#1F2A2E]/10">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <nav onMouseLeave={() => setOpen(null)} className="relative">
             <div className="flex items-center justify-between h-[72px]">
               <Logo />

@@ -53,7 +53,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
       {/* Challenge */}
       <section className="py-14 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid lg:grid-cols-2 gap-8">
+        <div className="wrap grid lg:grid-cols-2 gap-8">
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-[#626a6d]">01 — Context</p>
             <h2 className="mt-3 text-3xl md:text-4xl font-extrabold tracking-tight">The Challenge</h2>
@@ -83,7 +83,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
       {/* Key value */}
       <section className="py-14 bg-[#F4F8FA]">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Key Value to Business</h2>
           <div className="mt-8 grid md:grid-cols-3 gap-5">
             {d.impact.map((m, i) => (
@@ -98,7 +98,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
       {/* Solution */}
       <section className="py-14 md:py-20 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-[#626a6d]">03 — Delivery</p>
           <h2 className="mt-3 text-3xl md:text-5xl font-extrabold tracking-tight">The Solution</h2>
           <div className="mt-10 grid lg:grid-cols-[1.4fr_1fr] gap-6 items-start">
@@ -126,7 +126,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
       {/* Impact */}
       <section className="py-14 bg-[#1F2A2E]">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-white/50">04 — Results</p>
           <h2 className="mt-3 text-3xl md:text-5xl font-extrabold tracking-tight text-white">The Impact</h2>
           <div className="mt-8 grid md:grid-cols-3 gap-5">
@@ -142,7 +142,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
       {/* More work */}
       <section className="py-14 md:py-20 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <div className="flex items-end justify-between gap-4">
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Examples Of Our Expertise</h2>
             <Link href="/case-studies" className="hidden sm:inline-flex items-center gap-3 rounded-full bg-[#1F2A2E] text-white pl-6 pr-1.5 py-1.5 text-sm font-bold min-h-[52px] shrink-0">View all<span className="w-10 h-10 rounded-full bg-gradient-to-r from-[#a13ddf] to-[#2BB2FC] grid place-items-center"><ArrowUpRight className="h-4 w-4" /></span></Link>
@@ -166,7 +166,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
       {/* CTA */}
       <section className="pb-14 md:pb-20 px-4 md:px-6 bg-white">
-        <div className="mx-auto max-w-[1320px] rounded-[24px] overflow-hidden relative bg-[#1F2A2E]">
+        <div className="wrap rounded-[24px] overflow-hidden relative bg-[#1F2A2E]">
           <Image src={img} alt="" fill className="object-cover opacity-25" sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#a13ddf]/60 to-[#2BB2FC]/40" />
           <div className="relative p-8 md:p-12 flex flex-col md:flex-row md:items-center gap-6 justify-between">

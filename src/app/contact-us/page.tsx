@@ -53,7 +53,7 @@ export default function Page() {
 
       {/* info cards */}
       <section className="py-14 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid md:grid-cols-3 gap-5 items-stretch">
+        <div className="wrap grid md:grid-cols-3 gap-5 items-stretch">
           {CARDS.map((c, i) => (
             <div key={c.title} className={`rounded-[28px] p-8 flex flex-col ${i === 1 ? "bg-[#1F2A2E] text-white" : "bg-[#F4F8FA] border border-[#1F2A2E]/10"}`}>
               <span className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#a13ddf] to-[#2BB2FC] text-white grid place-items-center"><c.Icon className="h-5 w-5" /></span>
@@ -78,7 +78,7 @@ export default function Page() {
 
       {/* form + steps */}
       <section className="pb-14 md:pb-20 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid lg:grid-cols-[1fr_1.4fr] gap-8 items-start">
+        <div className="wrap grid lg:grid-cols-[1fr_1.4fr] gap-8 items-start">
           <div>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">What happens next?</h2>
             <div className="mt-6 space-y-0">
@@ -106,7 +106,7 @@ export default function Page() {
 
       {/* CTA */}
       <section className="pb-14 md:pb-20 px-4 md:px-6 bg-white">
-        <div className="mx-auto max-w-[1320px] rounded-[24px] bg-[#1F2A2E] p-8 md:p-12 flex flex-col md:flex-row md:items-center gap-6 justify-between overflow-hidden relative">
+        <div className="wrap rounded-[24px] bg-[#1F2A2E] p-8 md:p-12 flex flex-col md:flex-row md:items-center gap-6 justify-between overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-r from-[#a13ddf]/25 to-[#2BB2FC]/20" />
           <div className="relative">
             <h2 className="text-2xl md:text-4xl font-extrabold text-white">Empowering Enterprises to Scale & Succeed</h2>

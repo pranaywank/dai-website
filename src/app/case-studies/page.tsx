@@ -21,12 +21,12 @@ export default function Page() {
         description="Twenty-nine programs across defence, manufacturing, healthcare, retail, education and more — filter by industry or technology, then open any story for the full challenge-to-impact narrative."
       />
       <section className="py-14 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+        <div className="wrap">
           <CaseGrid />
         </div>
       </section>
       <section className="pb-14 md:pb-20 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid lg:grid-cols-[1fr_1.4fr] gap-8 items-start">
+        <div className="wrap grid lg:grid-cols-[1fr_1.4fr] gap-8 items-start">
           <div>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Get In Touch</h2>
             <p className="mt-3 text-lg text-[#626a6d]">Want results like these? Tell us your goal — we reply with a scoped pilot.</p>

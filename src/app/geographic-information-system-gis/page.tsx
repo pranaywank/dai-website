@@ -18,7 +18,7 @@ export default function Page() {
         imageAlt="GIS spatial intelligence platform with asset mapping"
       />
       <section className="py-14 bg-white">
-        <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid lg:grid-cols-2 gap-8 items-center">
+        <div className="wrap grid lg:grid-cols-2 gap-8 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Every asset, on the map and in 3D</h2>
             <p className="mt-4 text-lg text-[#626a6d]">Plan routes, inspect clusters and dispatch crews from one spatial view — synced with the twin.</p>
