@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin, Globe, AtSign, MessageCircle, Share2, Rss } from "lucide-react";
 import { FooterBackgroundGradient, TextHoverEffect } from "@/components/ui/hover-footer";
+import { Logo } from "@/components/layout/Logo";
 
 const footerLinks = [
   {
@@ -53,13 +54,8 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 md:gap-8 pb-12">
             {/* Brand section */}
             <div className="flex flex-col space-y-4 lg:col-span-1">
-              <div className="flex items-center space-x-2.5">
-                <span className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#a13ddf] to-[#2BB2FC] grid place-items-center font-extrabold text-white text-lg">D</span>
-                <span className="leading-tight">
-                  <span className="block text-white text-xl font-bold">Digital Agents</span>
-                  <span className="block text-[10px] uppercase tracking-[0.24em] text-gray-500">XR Studio</span>
-                </span>
-              </div>
+              <Logo dark />
+              <p className="text-[10px] uppercase tracking-[0.24em] text-gray-500 font-bold">XR Studio</p>
               <p className="text-sm leading-relaxed">
                 XR studio building AR, VR & MR training simulators, digital twins and 3D product experiences.
               </p>

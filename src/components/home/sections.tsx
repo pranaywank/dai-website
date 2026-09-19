@@ -80,9 +80,9 @@ export function Hero() {
           <Pill href="/contact-us">Start an XR project</Pill>
         </div>
       </div>
-      <div className="absolute bottom-6 right-4 md:bottom-8 md:right-8 z-20 flex items-center gap-2">
+      <div className="absolute top-24 right-4 md:top-auto md:bottom-8 md:right-8 z-20 flex items-center gap-2">
         <button aria-label="Previous slide" onClick={() => go(-1)} className="w-9 h-9 rounded-full bg-white/10 backdrop-blur border border-white/20 grid place-items-center text-white text-sm hover:bg-white/25 transition">‹</button>
-        <div className="flex gap-1.5 px-1">{slides.map((_, i) => <button key={i} aria-label={`Slide ${i+1}`} onClick={() => setIdx(i)} className={`h-1.5 rounded-full transition-all ${i===idx ? "w-6 bg-gradient-to-r from-[#a13ddf] to-[#2BB2FC]" : "w-1.5 bg-white/30 hover:bg-white/50"}`} />)}</div>
+        <div className="flex gap-1.5 px-1 py-2 -m-1">{slides.map((_, i) => <button key={i} aria-label={`Slide ${i+1}`} onClick={() => setIdx(i)} className={`h-2 rounded-full transition-all ${i===idx ? "w-8 bg-gradient-to-r from-[#a13ddf] to-[#2BB2FC]" : "w-2 bg-white/30 hover:bg-white/50"}`} />)}</div>
         <button aria-label="Next slide" onClick={() => go(1)} className="w-9 h-9 rounded-full bg-white/10 backdrop-blur border border-white/20 grid place-items-center text-white text-sm hover:bg-white/25 transition">›</button>
       </div>
     </section>
@@ -199,7 +199,7 @@ export function ServicesDark() {
               className={`group w-full text-left border-t border-white/10 last:border-b transition-colors ${i === rows.length - 1 ? "" : ""}`}
             >
               <span className="flex items-baseline gap-4 py-8 md:py-10">
-                <span className={`text-4xl md:text-6xl min-[1800px]:text-7xl font-extrabold tracking-tight transition-colors duration-300 ${i === active ? "text-white" : "text-white/25 group-hover:text-white/60"}`}>
+                <span className={`text-3xl sm:text-4xl md:text-6xl min-[1800px]:text-7xl font-extrabold tracking-tight transition-colors duration-300 ${i === active ? "text-white" : "text-white/25 group-hover:text-white/60"}`}>
                   {r.t}
                 </span>
                 <span className={`text-xs md:text-sm font-extrabold transition-colors ${i === active ? "text-[#2BB2FC]" : "text-white/30"}`}>
@@ -307,7 +307,7 @@ export function ProcessSteps() {
             >
               <span className="block py-5 md:py-7">
                 <span className="flex items-baseline gap-3">
-                  <span className={`text-4xl md:text-6xl min-[1800px]:text-7xl font-extrabold tracking-tight transition-colors duration-300 ${i === active ? "text-[#1F2A2E]" : "text-[#1F2A2E]/20 group-hover:text-[#1F2A2E]/50"}`}>
+                  <span className={`text-3xl sm:text-4xl md:text-6xl min-[1800px]:text-7xl font-extrabold tracking-tight transition-colors duration-300 ${i === active ? "text-[#1F2A2E]" : "text-[#1F2A2E]/20 group-hover:text-[#1F2A2E]/50"}`}>
                     {s.t}
                   </span>
                   <span className={`text-xs md:text-sm font-extrabold transition-colors ${i === active ? "text-[#a13ddf]" : "text-[#1F2A2E]/30"}`}>
