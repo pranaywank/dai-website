@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { techSolutions } from "@/lib/site";
-import { ContentDetail } from "@/components/content/PageTemplate";
+import { TechDetail } from "@/components/content/TechDetail";
 
 export function generateStaticParams() {
   return techSolutions.map((s) => ({ slug: s.slug }));
@@ -23,14 +23,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const { slug } = await params;
   const page = techSolutions.find((s) => s.slug === slug);
   if (!page) return notFound();
+  const { icon: _icon, ...rest } = page;
   return (
     <main className="bg-white">
-      <ContentDetail
-        page={page}
-        relatedLabel="Technology Solutions"
-        crumbBase={{ label: "Technology Solutions", href: "/#services" }}
-        related={techSolutions.filter((s) => s.slug !== slug).map((s) => ({ title: s.title, href: `/technology-solutions/${s.slug}` }))}
-      />
+      <TechDetail page={rest} />
     </main>
   );
 }
