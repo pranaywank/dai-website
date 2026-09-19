@@ -11,7 +11,7 @@ import { XR_IMAGES as X, HERO_SLIDES } from "@/lib/images";
 
 const XR = {
   hero1: HERO_SLIDES[0],
-  hero2: X.vrMan,
+  hero2: X.heroDangerous,
   hero3: X.neonGame,
   lab: X.arLab,
   industrial: X.engineerTwin,

@@ -46,6 +46,7 @@ export const XR_IMAGES = {
   heroFreepik: a("Hero/freepik_edit_A-Hispanic-male-using-software-on-a-computer-at-ni.jpeg"),
   heroMain: a("Hero/Hero Main.png"),
   heroFirst: a("Hero/first main.png"),
+  heroDangerous: a("Hero/dangerous.png"),
 };
 
 export const HERO_SLIDES = [XR_IMAGES.heroFirst, XR_IMAGES.vrMan, XR_IMAGES.neonGame];
