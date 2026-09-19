@@ -30,6 +30,28 @@ body {
 
 ::selection { background: #a13ddf; color: #fff; }
 
+/* Fluid capped container: comfortable on laptop, expands gracefully on
+   ultrawide monitors instead of leaving huge empty gutters. */
+.wrap {
+  margin-inline: auto;
+  width: 100%;
+  padding-inline: 1rem;
+  max-width: 1320px;
+}
+@media (min-width: 768px) {
+  .wrap { padding-inline: 1.5rem; }
+}
+@media (min-width: 1750px) {
+  .wrap { max-width: 1560px; }
+}
+/* Fluid display type that keeps growing on very wide screens */
+.fluid-hero {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+@media (min-width: 1750px) {
+  .fluid-hero { font-size: clamp(4rem, 6.5vw, 7rem); }
+}
+
 .grad-text {
   background: linear-gradient(90deg, #a13ddf, #2bb2fc);
   -webkit-background-clip: text;

@@ -1,13 +1,13 @@
 import {
   Hero,
   StatsFacts,
+  KeywordMarquee,
   FeaturedProjects,
   ServicesDark,
-  WhyUs,
+  ProcessSteps,
   Testimonials,
   IndustriesXR,
   Faq,
-  News,
   ContactCTA,
 } from "@/components/home/sections";
 
@@ -16,13 +16,13 @@ export default function Home() {
     <main className="bg-white text-[#1F2A2E]">
       <Hero />
       <StatsFacts />
-      <FeaturedProjects />
+      <KeywordMarquee />
       <ServicesDark />
-      <WhyUs />
-      <Testimonials />
       <IndustriesXR />
+      <FeaturedProjects />
+      <ProcessSteps />
+      <Testimonials />
       <Faq />
-      <News />
       <ContactCTA />
     </main>
   );

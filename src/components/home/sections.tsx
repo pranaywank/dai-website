@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, animate, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHead, PillButton } from "@/components/ui/section";
 import { capabilities, industries, techSolutions, services, caseStudies, blogPosts } from "@/lib/site";
@@ -30,9 +30,24 @@ function Pill({ href, children, dark = false }: { href: string; children: React.
 
 export function Hero() {
   const slides = [
-    { badge: "XR Studio — AR / VR / MR", img: XR.hero1, h: "We build XR training that transfers to the floor", p: "VR simulators, AR guidance and digital twins for manufacturing, defence, healthcare and energy. Original XR-SEO copy in the same structure as the reference site." },
-    { badge: "VR Simulators", img: XR.hero2, h: "Practice dangerous work safely in VR", p: "UAV, medical, plant and tactical simulators with scoring, debrief and LMS analytics — built in Unity & Unreal." },
-    { badge: "Digital Twins + AR", img: XR.hero3, h: "See every asset live in 3D", p: "IoT-bound twins, 360 tours, vision QA and remote AR assistance that cut downtime and travel." },
+    {
+      img: XR.hero1,
+      titleA: "Immersive XR Solutions",
+      titleB: "for Real Business ROI",
+      p: "Digital Agents is an XR studio in India building VR training simulators, AR field guidance and digital twins for manufacturing, defence, healthcare and energy — with measurable skill transfer from day one.",
+    },
+    {
+      img: XR.hero2,
+      titleA: "Practice Dangerous Work",
+      titleB: "Safely in Virtual Reality",
+      p: "What is VR safety training? Rehearsing high-risk jobs — UAV, medical, plant and tactical operations — with zero exposure, plus scoring, debrief and LMS analytics built in Unity & Unreal.",
+    },
+    {
+      img: XR.hero3,
+      titleA: "See Every Asset",
+      titleB: "Live in 3D Digital Twins",
+      p: "IoT-connected digital twins, 360 tours, vision-based quality checks and remote AR assistance that cut downtime and travel — deployed on-prem or cloud, across India.",
+    },
   ];
   const [idx, setIdx] = useState(0);
   useEffect(() => {
@@ -40,6 +55,7 @@ export function Hero() {
     return () => clearInterval(t);
   }, [slides.length]);
   const s = slides[idx];
+  const go = (d: number) => setIdx((idx + d + slides.length) % slides.length);
   return (
     <section className="relative flex items-end min-h-[100svh] overflow-hidden bg-[#1F2A2E]">
       <AnimatePresence mode="sync">
@@ -48,41 +64,67 @@ export function Hero() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#1F2A2E] via-[#1F2A2E]/55 to-[#1F2A2E]/25" />
         </motion.div>
       </AnimatePresence>
-      <div className="relative z-10 mx-auto w-full max-w-[1320px] px-4 md:px-6 pb-10 pt-36">
-        <div className="flex items-center gap-4">
-          <span className="h-2 w-2 rounded-full bg-[#a13ddf] animate-pulse" />
-          <p className="text-white/80 text-[15px] md:text-lg max-w-xl">XR studio crafting <span className="text-[#a13ddf] font-bold">high-performing immersive solutions</span> {s.badge.toLowerCase()} that elevate training and conversions.</p>
-        </div>
+      <div className="relative z-10 wrap w-full pb-24 md:pb-28 pt-36">
         <AnimatePresence mode="wait">
           <motion.div key={idx} initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.5 }}>
-            <h1 className="mt-4 text-white font-extrabold leading-[0.95] tracking-tight text-[17vw] md:text-[9rem]">{s.h.split(" ").slice(0, 2).join(" ")}<br />{s.h.split(" ").slice(2, 4).join(" ")}</h1>
-            <p className="mt-4 max-w-2xl text-white/70 text-base md:text-lg">{s.p}</p>
+            <h1 className="fluid-hero text-white font-extrabold leading-[0.95] tracking-tight text-balance">
+              {s.titleA}
+              <br />
+              <span className="bg-gradient-to-r from-[#a13ddf] via-[#b45df0] to-[#2BB2FC] bg-clip-text text-transparent">{s.titleB}</span>
+            </h1>
+            <p className="mt-5 max-w-2xl text-white/70 text-base md:text-lg leading-relaxed">{s.p}</p>
+            <p className="mt-3 text-[13px] md:text-sm text-white/50 font-bold tracking-wide">For mobile, web, Apple Vision Pro, Meta Quest & leading AR / VR / MR headsets</p>
           </motion.div>
         </AnimatePresence>
-        <div className="mt-6 flex flex-wrap items-center gap-3">
+        <div className="mt-7">
           <Pill href="/contact-us">Start an XR project</Pill>
-          <Pill href="/case-studies" dark>See XR work</Pill>
-          <div className="ml-2 flex items-center gap-2">
-            <button aria-label="Previous" onClick={() => setIdx((idx + slides.length - 1) % slides.length)} className="w-11 h-11 rounded-full bg-white text-[#1F2A2E] grid place-items-center font-bold">‹</button>
-            <div className="flex gap-1.5">{slides.map((_, i) => <button key={i} aria-label={`Slide ${i+1}`} onClick={() => setIdx(i)} className={`h-2 rounded-full transition-all ${i===idx ? "w-8 bg-[#a13ddf]" : "w-2 bg-white/30"}`} />)}</div>
-            <button aria-label="Next" onClick={() => setIdx((idx + 1) % slides.length)} className="w-11 h-11 rounded-full bg-white text-[#1F2A2E] grid place-items-center font-bold">›</button>
-          </div>
         </div>
+      </div>
+      <div className="absolute bottom-6 right-4 md:bottom-8 md:right-8 z-20 flex items-center gap-2">
+        <button aria-label="Previous slide" onClick={() => go(-1)} className="w-9 h-9 rounded-full bg-white/10 backdrop-blur border border-white/20 grid place-items-center text-white text-sm hover:bg-white/25 transition">‹</button>
+        <div className="flex gap-1.5 px-1">{slides.map((_, i) => <button key={i} aria-label={`Slide ${i+1}`} onClick={() => setIdx(i)} className={`h-1.5 rounded-full transition-all ${i===idx ? "w-6 bg-gradient-to-r from-[#a13ddf] to-[#2BB2FC]" : "w-1.5 bg-white/30 hover:bg-white/50"}`} />)}</div>
+        <button aria-label="Next slide" onClick={() => go(1)} className="w-9 h-9 rounded-full bg-white/10 backdrop-blur border border-white/20 grid place-items-center text-white text-sm hover:bg-white/25 transition">›</button>
       </div>
     </section>
   );
 }
 
+function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const [val, setVal] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(0, to, { duration: 1.8, ease: "easeOut", onUpdate: (v) => setVal(Math.round(v)) });
+    return () => controls.stop();
+  }, [inView, to]);
+  return (
+    <span ref={ref}>
+      {val.toLocaleString("en-IN")}
+      {suffix}
+    </span>
+  );
+}
+
 export function StatsFacts() {
+  const stats: { v: number; suffix: string; t: string; d: string }[] = [
+    { v: 300, suffix: "+", t: "Projects launched", d: "XR modules, twins & 3D apps shipped for industry." },
+    { v: 2, suffix: "M+", t: "Users reached", d: "Learners, shoppers and attendees engaged globally." },
+    { v: 98, suffix: "%", t: "Client satisfaction rate", d: "Long-term partnerships through proven results." },
+    { v: 10, suffix: "+", t: "Years of expertise", d: "A decade delivering impactful XR solutions." },
+  ];
   return (
     <section className="py-16 md:py-24 bg-white">
-      <div className="mx-auto max-w-[1320px] px-4 md:px-6">
-        <SectionHead no="01" label="Stats & facts" title="An XR studio you can trust with mission-critical training" desc="Original XR-focused copy: we ship VR simulators, AR workflows and digital twins — measured by retention, uptime and audit readiness." />
-        <div className="mt-10 grid md:grid-cols-3 gap-8">
-          {[["10+", "Years building XR simulators & twins"], ["300+", "XR modules, twins & 3D apps shipped"], ["120+", "Industrial clients onboarded to XR"]].map(([v, l]) => (
-            <div key={l} className="border-t border-[#1F2A2E]/15 pt-8">
-              <p className="text-5xl md:text-6xl font-extrabold text-[#1F2A2E]">{v}</p>
-              <p className="mt-3 text-[#626a6d]">{l}</p>
+      <div className="wrap">
+        <SectionHead no="01" label="Stats & facts" title="Our work speaks through numbers" desc="Here's what we've achieved so far — measured in shipped programs, reached users and retained clients." />
+        <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {stats.map((s) => (
+            <div key={s.t} className="border-t-2 border-[#1F2A2E]/10 pt-6">
+              <p className="text-5xl min-[1800px]:text-7xl font-extrabold grad-text">
+                <CountUp to={s.v} suffix={s.suffix} />
+              </p>
+              <p className="mt-2 font-extrabold text-lg">{s.t}</p>
+              <p className="mt-1 text-[#626a6d]">{s.d}</p>
             </div>
           ))}
         </div>
@@ -96,10 +138,10 @@ export function FeaturedProjects() {
   const imgs = [XR.hero1, XR.lab, XR.industrial, XR.training, XR.headset, XR.hero3];
   return (
     <section className="py-16 md:py-24 bg-[#F4F8FA]">
-      <div className="mx-auto max-w-[1320px] px-4 md:px-6">
-        <SectionHead no="02" label="Portfolio" title="Featured XR projects" desc="VR training, AR assistance and twin deployments — original placeholder summaries in the reference sitemap's structure." />
+      <div className="wrap">
+        <SectionHead no="04" label="Portfolio" title="Featured XR projects" desc="VR training, AR assistance and twin deployments — original placeholder summaries in the reference sitemap's structure." />
       </div>
-      <div className="mt-10 grid md:grid-cols-3 gap-6 mx-auto max-w-[1320px] px-4 md:px-6">
+      <div className="mt-10 grid md:grid-cols-3 gap-6 wrap">
         {items.map((c, i) => (
           <Link key={c.slug} href={`/case-study/${c.slug}`} className="group">
             <div className="relative overflow-hidden rounded-[20px] aspect-[4/3]">
@@ -118,35 +160,54 @@ export function FeaturedProjects() {
 
 export function ServicesDark() {
   const rows = [
-    { t: "VR Training Simulators", d: "Quest, Vive & Vision Pro sims with scoring and xAPI analytics.", img: XR.training },
-    { t: "AR Guidance & Remote Assist", d: "CAD-anchored steps and expert calls on phones & glasses.", img: XR.lab },
-    { t: "Digital Twins & 3D", d: "IoT-bound twins, 360 tours, configurators and vision QA.", img: XR.industrial },
-    { t: "Unity / Unreal / Omniverse", d: "Real-time pipelines from MVP to plant-scale rollout.", img: XR.headset },
+    { t: "VR Training Simulators", d: "Quest, Vive & Vision Pro sims with scoring and xAPI analytics.", img: XR.training, href: "/capabilities/virtual-reality-vr" },
+    { t: "AR Guidance & Remote Assist", d: "CAD-anchored steps and expert calls on phones & glasses.", img: XR.lab, href: "/capabilities/augmented-reality-ar" },
+    { t: "Digital Twins & 3D", d: "IoT-bound twins, 360 tours, configurators and vision QA.", img: XR.industrial, href: "/technology-solutions/digital-twin" },
+    { t: "Unity / Unreal / Omniverse", d: "Real-time pipelines from MVP to plant-scale rollout.", img: XR.headset, href: "/digital-product-engineering" },
   ];
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(2);
   return (
-    <section className="py-16 md:py-24 bg-[#1F2A2E]" id="services">
-      <div className="mx-auto max-w-[1320px] px-4 md:px-6">
-        <SectionHead dark no="03" label="Services" title="What We Do" desc="Four XR service lines covering the reference site's services, capabilities and technology solutions." />
-        <div className="mt-10 grid lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-4">
-            <div className="relative overflow-hidden rounded-[20px] aspect-[4/5] sticky top-28">
+    <section className="py-20 md:py-32 bg-[#1F2A2E]" id="services">
+      <div className="wrap grid lg:grid-cols-12 gap-14">
+        <div className="lg:col-span-4">
+          <div className="lg:sticky lg:top-28">
+            <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-white/50">02 — Services</p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-extrabold tracking-tight text-white">What We Do</h2>
+            <div className="relative overflow-hidden rounded-[20px] aspect-[4/3] mt-6">
               <AnimatePresence mode="wait">
-                <motion.div key={active} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} className="absolute inset-0">
+                <motion.div key={active} initial={{ opacity: 0, scale: 1.03 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }} className="absolute inset-0">
                   <Image src={rows[active].img} alt={rows[active].t} fill className="object-cover" sizes="(max-width:1024px) 100vw, 33vw" />
                 </motion.div>
               </AnimatePresence>
             </div>
+            <AnimatePresence mode="wait">
+              <motion.div key={active} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
+                <p className="mt-6 text-sm font-bold text-white/50">{rows[active].t}</p>
+                <p className="mt-2 text-white font-bold text-lg">{rows[active].d}</p>
+                <Link href={rows[active].href} className="mt-4 inline-flex items-center gap-1.5 text-sm font-extrabold text-[#2BB2FC] hover:underline">Explore <ArrowUpRight className="h-4 w-4" /></Link>
+              </motion.div>
+            </AnimatePresence>
           </div>
-          <div className="lg:col-span-8">
-            {rows.map((r, i) => (
-              <button key={r.t} onClick={() => setActive(i)} className={`w-full text-left py-6 lg:py-8 border-t border-white/10 grid md:grid-cols-2 gap-3 items-center ${i === rows.length - 1 ? "border-b" : ""}`}>
-                <span className={`text-2xl md:text-4xl font-extrabold ${i === active ? "text-[#a13ddf]" : "text-white"}`}>{r.t}</span>
-                <span className="text-white/70">{r.d}</span>
-              </button>
-            ))}
-            <div className="mt-8"><PillButton href="/digital-product-engineering" variant="outline">See XR work</PillButton></div>
-          </div>
+        </div>
+        <div className="lg:col-span-8 flex flex-col justify-center">
+          {rows.map((r, i) => (
+            <button
+              key={r.t}
+              onMouseEnter={() => setActive(i)}
+              onFocus={() => setActive(i)}
+              onClick={() => setActive(i)}
+              className={`group w-full text-left border-t border-white/10 last:border-b transition-colors ${i === rows.length - 1 ? "" : ""}`}
+            >
+              <span className="flex items-baseline gap-4 py-8 md:py-10">
+                <span className={`text-4xl md:text-6xl min-[1800px]:text-7xl font-extrabold tracking-tight transition-colors duration-300 ${i === active ? "text-white" : "text-white/25 group-hover:text-white/60"}`}>
+                  {r.t}
+                </span>
+                <span className={`text-xs md:text-sm font-extrabold transition-colors ${i === active ? "text-[#2BB2FC]" : "text-white/30"}`}>
+                  {"{0"}{i + 1}{"}"}
+                </span>
+              </span>
+            </button>
+          ))}
         </div>
       </div>
     </section>
@@ -156,7 +217,7 @@ export function ServicesDark() {
 export function WhyUs() {
   return (
     <section className="py-16 md:py-24 bg-white">
-      <div className="mx-auto max-w-[1320px] px-4 md:px-6 grid lg:grid-cols-12 gap-8">
+      <div className="wrap grid lg:grid-cols-12 gap-8">
         <div className="lg:col-span-3">
           <div className="flex items-center gap-4">
             <span className="w-9 h-9 rounded-full bg-[#a13ddf] grid place-items-center text-sm font-bold">04</span>
@@ -190,23 +251,132 @@ export function WhyUs() {
   );
 }
 
+export function KeywordMarquee() {
+  const words = ["Augmented Reality", "Virtual Reality", "Mixed Reality", "Digital Twins", "Artificial Intelligence", "Unity", "Unreal Engine", "Meta Quest", "Vision Pro"];
+  return (
+    <div className="py-6 border-y border-[#1F2A2E]/10 bg-[#F4F8FA] overflow-hidden" aria-hidden>
+      <div className="flex gap-10 w-max animate-[marquee_30s_linear_infinite]">
+        {[...words, ...words].map((w, i) => (
+          <span key={i} className="flex items-center gap-10 text-sm font-extrabold uppercase tracking-[0.2em] text-[#1F2A2E]/50 whitespace-nowrap">
+            {w} <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-[#a13ddf] to-[#2BB2FC]" />
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function ProcessSteps() {
+  const steps = [
+    { t: "Discover", d: "Workshops and site walkthroughs pin down users, risks and KPIs — ending in a fixed-scope pilot proposal.", img: XR.lab },
+    { t: "Design", d: "UX flows, 3D art direction and clickable prototypes validated with end users before build.", img: XR.headset },
+    { t: "Build", d: "Agile sprints on real devices with backend bindings, analytics and hardening for offline fleets.", img: XR.industrial },
+    { t: "Scale", d: "Pilot cohorts measured against baselines, then templated rollout with training and SLAs.", img: XR.training },
+  ];
+  const [active, setActive] = useState(1);
+  return (
+    <section className="py-16 md:py-24 bg-white">
+      <div className="wrap grid lg:grid-cols-12 gap-10">
+        <div className="lg:col-span-4">
+          <div className="lg:sticky lg:top-28">
+            <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-[#626a6d]">05 — Process</p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-extrabold tracking-tight">Our process</h2>
+            <p className="mt-3 text-[#626a6d]">Four steps from first workshop to scaled rollout.</p>
+            <div className="relative overflow-hidden rounded-[20px] aspect-[4/3] mt-6">
+              <AnimatePresence mode="wait">
+                <motion.div key={active} initial={{ opacity: 0, scale: 1.03 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }} className="absolute inset-0">
+                  <Image src={steps[active].img} alt={steps[active].t} fill className="object-cover" sizes="(max-width:1024px) 100vw, 33vw" />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            <AnimatePresence mode="wait">
+              <motion.p key={active} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} className="mt-4 font-bold">
+                {steps[active].t} — <span className="text-[#626a6d] font-medium">{steps[active].d}</span>
+              </motion.p>
+            </AnimatePresence>
+          </div>
+        </div>
+        <div className="lg:col-span-8 flex flex-col justify-center">
+          {steps.map((s, i) => (
+            <button
+              key={s.t}
+              onMouseEnter={() => setActive(i)}
+              onFocus={() => setActive(i)}
+              onClick={() => setActive(i)}
+              className="group w-full text-left border-t border-[#1F2A2E]/10 last:border-b"
+            >
+              <span className="block py-5 md:py-7">
+                <span className="flex items-baseline gap-3">
+                  <span className={`text-4xl md:text-6xl min-[1800px]:text-7xl font-extrabold tracking-tight transition-colors duration-300 ${i === active ? "text-[#1F2A2E]" : "text-[#1F2A2E]/20 group-hover:text-[#1F2A2E]/50"}`}>
+                    {s.t}
+                  </span>
+                  <span className={`text-xs md:text-sm font-extrabold transition-colors ${i === active ? "text-[#a13ddf]" : "text-[#1F2A2E]/30"}`}>
+                    {"{0"}{i + 1}{"}"}
+                  </span>
+                </span>
+                <span className={`block mt-2 max-w-xl transition-colors ${i === active ? "text-[#626a6d]" : "text-[#1F2A2E]/40"}`}>
+                  {s.d}
+                </span>
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function TeamTeaser() {
+  return (
+    <section className="py-16 md:py-24 bg-[#1F2A2E]">
+      <div className="wrap grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-white/50">06 — Team</p>
+          <h2 className="mt-3 text-4xl md:text-5xl font-extrabold tracking-tight text-white">Meet our team</h2>
+          <p className="mt-4 text-lg text-white/70 max-w-lg">A diverse group of creators, strategists and developers driven by one passion — impactful XR.</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {[["19", "Creators, strategists & engineers"], ["7+", "XR developers"], ["9+", "3D & experience designers"]].map(([v, l]) => (
+              <div key={l} className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4">
+                <p className="text-2xl font-extrabold text-white">{v}</p>
+                <p className="text-xs text-white/60 font-bold">{l}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6"><PillButton href="/about-us" variant="outline">Meet our team</PillButton></div>
+        </div>
+        <div className="relative overflow-hidden rounded-[28px] aspect-[16/10]">
+          <Image src={X.arLab} alt="XR studio team collaborating in the lab" fill className="object-cover" sizes="(max-width:1024px) 100vw, 50vw" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1F2A2E]/60 to-transparent" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function Testimonials() {
   const items = [
-    { q: "Immersive modules our operators actually enjoy — rollout was seamless.", who: "XR Training Lead", org: "Manufacturing", img: XR.training },
-    { q: "The twin cut our troubleshooting time across three lines.", who: "Plant Head", org: "Energy", img: XR.industrial },
-    { q: "Seven years of v-lab partnership — students worldwide benefit.", who: "University Partner", org: "Education", img: XR.headset },
+    { q: "Immersive modules our operators actually enjoy — rollout was seamless.", who: "XR Training Lead", org: "Manufacturing", img: XR.training, metrics: [["+75%", "Retention"]] },
+    { q: "The twin cut our troubleshooting time across three lines.", who: "Plant Head", org: "Energy", img: XR.industrial, metrics: [["-30%", "Downtime"], ["+22%", "Throughput"]] },
+    { q: "Seven years of v-lab partnership — students worldwide benefit.", who: "University Partner", org: "Education", img: XR.headset, metrics: [["7yrs", "Partnership"]] },
   ];
   return (
     <section className="py-16 md:py-24 bg-[#F4F8FA]">
-      <div className="mx-auto max-w-[1320px] px-4 md:px-6">
-        <SectionHead no="05" label="Testimonial" title="Stories from XR clients" desc="Original placeholder testimonials — replace with your licensed quotes and logos." />
+      <div className="wrap">
+        <SectionHead no="07" label="Testimonial" title="Success stories" desc="Our work speaks for itself — our clients say it even better. (Sample quotes; replace with licensed testimonials.)" />
         <div className="mt-10 grid md:grid-cols-3 gap-6">
           {items.map((t, i) => (
-            <div key={t.who} className={`rounded-[20px] p-7 flex flex-col justify-between min-h-[300px] ${i === 1 ? "bg-[#1F2A2E] text-white" : i === 0 ? "bg-gradient-to-r from-[#a13ddf] to-[#2BB2FC] text-white" : "bg-white border border-[#1F2A2E]/10"}`}>
-              <div><p className="text-sm font-bold opacity-70">Hear from them</p><h4 className="mt-3 text-2xl font-bold leading-snug">{t.q}</h4></div>
+            <div key={t.who} className={`rounded-[20px] p-7 flex flex-col justify-between min-h-[320px] ${i === 1 ? "bg-[#1F2A2E] text-white" : i === 0 ? "bg-gradient-to-r from-[#a13ddf] to-[#2BB2FC] text-white" : "bg-white border border-[#1F2A2E]/10"}`}>
+              <div>
+                <div className="flex flex-wrap gap-2">
+                  {t.metrics.map(([v, l]) => (
+                    <span key={l} className={`rounded-full px-3 py-1 text-xs font-extrabold ${i === 2 ? "bg-[#1F2A2E] text-white" : "bg-white/20 text-white"}`}>{v} {l}</span>
+                  ))}
+                </div>
+                <h4 className="mt-4 text-2xl font-bold leading-snug">“{t.q}”</h4>
+              </div>
               <div className="mt-6 flex items-center gap-3">
                 <div className="relative w-[60px] h-[60px] rounded-full overflow-hidden shrink-0"><Image src={t.img} alt={t.who} fill className="object-cover" sizes="60px" /></div>
-                <div><p className="font-bold">{t.who}</p><p className={`text-sm ${i === 1 ? "text-white/70" : "opacity-70"}`}>{t.org}</p></div>
+                <div><p className="font-bold">{t.who}</p><p className={`text-sm ${i === 2 ? "text-[#626a6d]" : "opacity-70"}`}>{t.org}</p></div>
               </div>
             </div>
           ))}
@@ -219,8 +389,8 @@ export function Testimonials() {
 export function IndustriesXR() {
   return (
     <section className="py-16 md:py-24 bg-white">
-      <div className="mx-auto max-w-[1320px] px-4 md:px-6">
-        <SectionHead no="06" label="Industries" title="XR where it pays back fastest" desc="Same industry sitemap as the reference — each page rewritten with XR use-cases for SEO." />
+      <div className="wrap">
+        <SectionHead no="03" label="Industries" title="XR where it pays back fastest" desc="Same industry sitemap as the reference — each page rewritten with XR use-cases for SEO." />
         <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4">
           {industries.map((c) => (
             <Link key={c.slug} href={`/industries/${c.slug}`} className="group rounded-[20px] border border-[#1F2A2E]/10 p-5 hover:border-[#1F2A2E] hover:shadow-lg transition bg-white">
@@ -243,7 +413,7 @@ export function Engagement() {
   ];
   return (
     <section className="py-16 md:py-24 bg-[#F4F8FA]">
-      <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+      <div className="wrap">
         <SectionHead no="07" label="Engagement" title="XR engagement models" desc="Start with a pilot, scale what works — pricing placeholders, not copied content." />
         <div className="mt-10 grid md:grid-cols-3 gap-6">
           {tiers.map((t) => (
@@ -274,15 +444,35 @@ export function Faq() {
   const [open, setOpen] = useState(0);
   return (
     <section className="py-16 md:py-24 bg-white">
-      <div className="mx-auto max-w-[1320px] px-4 md:px-6">
-        <SectionHead no="08" label="FAQs" title="XR questions, answered" />
-        <div className="mt-10 max-w-3xl space-y-3">
-          {faqs.map(([q, a], i) => (
-            <div key={q} className={`rounded-[20px] border ${open === i ? "border-[#1F2A2E] bg-[#F4F8FA]" : "border-[#1F2A2E]/10 bg-white"}`}>
-              <button onClick={() => setOpen(open === i ? -1 : i)} className="w-full text-left px-6 py-5 font-extrabold text-lg flex justify-between items-center gap-4">{q}<span className="w-9 h-9 rounded-full bg-[#a13ddf] grid place-items-center shrink-0">{open === i ? "−" : "+"}</span></button>
-              {open === i && <p className="px-6 pb-6 text-[#626a6d]">{a}</p>}
+      <div className="wrap grid lg:grid-cols-12 gap-10">
+        <div className="lg:col-span-7">
+          <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-[#626a6d]">07 — FAQ</p>
+          <h2 className="mt-3 text-3xl md:text-5xl font-extrabold tracking-tight">FAQs</h2>
+          <p className="mt-3 text-lg text-[#626a6d]">Everything you need to know before starting an XR pilot.</p>
+          <div className="mt-8 space-y-3">
+            {faqs.map(([q, a], i) => (
+              <div key={q} className={`rounded-[20px] border transition ${open === i ? "border-[#1F2A2E] bg-[#F4F8FA]" : "border-[#1F2A2E]/10 bg-white hover:border-[#1F2A2E]/30"}`}>
+                <button onClick={() => setOpen(open === i ? -1 : i)} className="w-full text-left px-6 py-5 font-extrabold text-lg flex justify-between items-center gap-4">{q}<span className={`w-9 h-9 rounded-full grid place-items-center shrink-0 text-white transition ${open === i ? "bg-[#1F2A2E] rotate-45" : "bg-gradient-to-r from-[#a13ddf] to-[#2BB2FC]"}`}>+</span></button>
+                {open === i && <p className="px-6 pb-6 text-[#626a6d]">{a}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="lg:col-span-5">
+          <div className="lg:sticky lg:top-28 space-y-5">
+            <div className="relative overflow-hidden rounded-[24px] aspect-[4/3]">
+              <Image src={XR.headset} alt="XR headset ready for a pilot program" fill className="object-cover" sizes="(max-width:1024px) 100vw, 40vw" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1F2A2E]/70 to-transparent" />
+              <p className="absolute bottom-5 left-5 right-5 text-white font-extrabold text-xl leading-snug">Pilots ship in weeks, not quarters.</p>
             </div>
-          ))}
+            <div className="rounded-[24px] bg-[#1F2A2E] p-7 flex items-center justify-between gap-4">
+              <div>
+                <p className="text-white font-extrabold text-lg">Still have questions?</p>
+                <p className="text-white/60 text-sm mt-0.5">A consultant replies within one business day.</p>
+              </div>
+              <Link href="/contact-us" className="w-[52px] h-[52px] rounded-full bg-gradient-to-r from-[#a13ddf] to-[#2BB2FC] grid place-items-center shrink-0 hover:brightness-110"><ArrowUpRight className="h-5 w-5 text-white" /></Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -293,7 +483,7 @@ export function News() {
   const imgs = [XR.hero1, XR.lab, XR.industrial];
   return (
     <section className="py-16 md:py-24 bg-[#F4F8FA]">
-      <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+      <div className="wrap">
         <SectionHead no="09" label="Resources" title="XR notes & launches" />
         <div className="mt-10 grid md:grid-cols-3 gap-6">
           {blogPosts.slice(0, 3).map((p, i) => (
@@ -314,7 +504,7 @@ export function News() {
 export function ContactCTA() {
   return (
     <section className="py-16 md:py-24 bg-white">
-      <div className="mx-auto max-w-[1320px] px-4 md:px-6">
+      <div className="wrap">
         <div className="grid md:grid-cols-12 gap-6">
           <div className="md:col-span-4">
             <div className="flex items-center gap-4">
